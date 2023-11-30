@@ -1,0 +1,773 @@
+{
+	"info": {
+		"_postman_id": "fe8311fd-4423-49f9-8488-cc20ff429571",
+		"name": "chatApp - riktamTech",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "9121116"
+	},
+	"item": [
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "Create User",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "authorization",
+								"value": "{{adminToken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"user\",\r\n    \"password\": \"passWord\",\r\n    \"email\": \"email\",\r\n    \"is_admin\": 0\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{siteURL}}/api/users/admin/users",
+							"host": [
+								"{{siteURL}}"
+							],
+							"path": [
+								"api",
+								"users",
+								"admin",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Edit User",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "authorization",
+								"value": "{{adminToken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"user\",\r\n    \"password\": \"passWord\",\r\n    \"email\": \"email\",\r\n    \"is_admin\": 0\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{siteURL}}/api/users/admin/users/25",
+							"host": [
+								"{{siteURL}}"
+							],
+							"path": [
+								"api",
+								"users",
+								"admin",
+								"users",
+								"25"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "Admin Login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = pm.response.json();\r",
+									"\r",
+									"pm.globals.set(\"adminToken\", jsonData.token);\r",
+									"pm.collectionVariables.set(\"adminToken\", jsonData.token);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"password\": \"passWord\",\r\n    \"username\": \"Admin\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{siteURL}}/api/auth/admin/login",
+							"host": [
+								"{{siteURL}}"
+							],
+							"path": [
+								"api",
+								"auth",
+								"admin",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "User Login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = pm.response.json();\r",
+									"\r",
+									"pm.globals.set(\"userToken\", jsonData.token);\r",
+									"pm.collectionVariables.set(\"userToken\", jsonData.token);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"password\": \"passWord\",\r\n    \"username\": \"user2\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{siteURL}}/api/auth/user/login",
+							"host": [
+								"{{siteURL}}"
+							],
+							"path": [
+								"api",
+								"auth",
+								"user",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Logout",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "authorization",
+								"value": "{{adminToken}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{siteURL}}/api/auth/logout",
+							"host": [
+								"{{siteURL}}"
+							],
+							"path": [
+								"api",
+								"auth",
+								"logout"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Group",
+			"item": [
+				{
+					"name": "Create Group",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "authorization",
+								"value": "{{userToken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"group_name\": \"Group 2\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{siteURL}}/api/groups/groups",
+							"host": [
+								"{{siteURL}}"
+							],
+							"path": [
+								"api",
+								"groups",
+								"groups"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Admin Create",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "authorization",
+										"value": "{{adminToken}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"group_name\": \"Group 2\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{siteURL}}/api/groups/groups",
+									"host": [
+										"{{siteURL}}"
+									],
+									"path": [
+										"api",
+										"groups",
+										"groups"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "102"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"66-mx8rKbrny7X1fqkQQcMhhZY3kns\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 30 Nov 2023 11:03:28 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Group created successfully\",\n    \"group\": {\n        \"group_id\": 4,\n        \"group_name\": \"Group 2\",\n        \"created_by\": 20\n    }\n}"
+						},
+						{
+							"name": "User Create",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "authorization",
+										"value": "{{userToken}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"group_name\": \"Group 2\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{siteURL}}/api/groups/groups",
+									"host": [
+										"{{siteURL}}"
+									],
+									"path": [
+										"api",
+										"groups",
+										"groups"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "102"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"66-Lq0qzidnYSpEAcBYJ3dUmJcJC2U\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 30 Nov 2023 11:07:10 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Group created successfully\",\n    \"group\": {\n        \"group_id\": 5,\n        \"group_name\": \"Group 2\",\n        \"created_by\": 25\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Get Members",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "authorization",
+								"value": "{{userToken}}",
+								"type": "text",
+								"description": "admin and user both"
+							}
+						],
+						"url": {
+							"raw": "{{siteURL}}/api/groups/groups/4/members",
+							"host": [
+								"{{siteURL}}"
+							],
+							"path": [
+								"api",
+								"groups",
+								"groups",
+								"4",
+								"members"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add Member",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "authorization",
+								"value": "{{userToken}}",
+								"type": "text",
+								"description": "admin and user both"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"userId\": 20\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{siteURL}}/api/groups/groups/4/members",
+							"host": [
+								"{{siteURL}}"
+							],
+							"path": [
+								"api",
+								"groups",
+								"groups",
+								"4",
+								"members"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Remove Member from Group",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "authorization",
+								"value": "{{userToken}}",
+								"type": "text",
+								"description": "admin and user both"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{siteURL}}/api/groups/groups/4/members/20",
+							"host": [
+								"{{siteURL}}"
+							],
+							"path": [
+								"api",
+								"groups",
+								"groups",
+								"4",
+								"members",
+								"20"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Group",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "authorization",
+								"value": "{{userToken}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{siteURL}}/api/groups/groups/4",
+							"host": [
+								"{{siteURL}}"
+							],
+							"path": [
+								"api",
+								"groups",
+								"groups",
+								"4"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Admin Remove",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "authorization",
+										"value": "{{adminToken}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"group_name\": \"Group 2\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{siteURL}}/api/groups/groups/3",
+									"host": [
+										"{{siteURL}}"
+									],
+									"path": [
+										"api",
+										"groups",
+										"groups",
+										"3"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "40"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"28-97ct/+2Dux54foli2DpZo/9R2+M\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 30 Nov 2023 11:03:13 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Group deleted successfully\"\n}"
+						},
+						{
+							"name": "User Remove",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "authorization",
+										"value": "{{userToken}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"group_name\": \"Group 2\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{siteURL}}/api/groups/groups/1",
+									"host": [
+										"{{siteURL}}"
+									],
+									"path": [
+										"api",
+										"groups",
+										"groups",
+										"1"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "40"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"28-97ct/+2Dux54foli2DpZo/9R2+M\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 30 Nov 2023 11:05:31 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Group deleted successfully\"\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Messages",
+			"item": [
+				{
+					"name": "Get Messages",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "authorization",
+								"value": "{{userToken}}",
+								"type": "text",
+								"description": "admin and user both"
+							}
+						],
+						"url": {
+							"raw": "{{siteURL}}/api/groups/groups/4/messages?cursor=",
+							"host": [
+								"{{siteURL}}"
+							],
+							"path": [
+								"api",
+								"groups",
+								"groups",
+								"4",
+								"messages"
+							],
+							"query": [
+								{
+									"key": "cursor",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Like Message",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "authorization",
+								"value": "{{userToken}}",
+								"type": "text",
+								"description": "admin and user both"
+							}
+						],
+						"url": {
+							"raw": "{{siteURL}}/api/groups/groups/4/messages/5/like",
+							"host": [
+								"{{siteURL}}"
+							],
+							"path": [
+								"api",
+								"groups",
+								"groups",
+								"4",
+								"messages",
+								"5",
+								"like"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Send Message",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "authorization",
+								"value": "{{userToken}}",
+								"type": "text",
+								"description": "admin and user both"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"messageContent\": \"Hello World 2\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{siteURL}}/api/groups/groups/4/messages",
+							"host": [
+								"{{siteURL}}"
+							],
+							"path": [
+								"api",
+								"groups",
+								"groups",
+								"4",
+								"messages"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"variable": [
+		{
+			"key": "adminToken",
+			"value": ""
+		},
+		{
+			"key": "userToken",
+			"value": ""
+		}
+	]
+}
