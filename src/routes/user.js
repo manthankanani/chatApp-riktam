@@ -6,5 +6,6 @@ const authMiddleware = require('../middleware/auth');
 // Route to create a new user (admin-only)
 router.post('/admin/users', authMiddleware.isAdmin, userController.createUser);
 router.put('/admin/users/:userId', authMiddleware.isAdmin, userController.editUserByAdmin);
+router.delete('/admin/users/:userId', authMiddleware.isAdmin, userController.deleteUserById);
 
 module.exports = router;

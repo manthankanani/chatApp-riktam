@@ -9,9 +9,10 @@ UserModel.create = async ({ username, password, email, is_admin }) => {
     password = await bcrypt.hash(password, 10); // 10 is the salt round
 
     // Check if the email or user_id already exists
-    const [existingUser] = await db.promise().query('SELECT * FROM Users WHERE email = ? OR user_id = ?', [email, email]);
+    const [existingUser1] = await db.promise().query('SELECT * FROM Users WHERE email = ? OR user_id = ?', [email, email]);
+    const [existingUser2] = await db.promise().query('SELECT * FROM Users WHERE email = ? OR user_id = ?', [username, username]);
 
-    if (existingUser.length > 0) {
+    if (existingUser1.length > 0 || existingUser2.length > 0) {
       throw new Error('Email or user already exists. Please use a different email or user ID.');
     }
 
@@ -96,6 +97,18 @@ UserModel.updateUser = async (userId, updatedFields) => {
     return updatedUser[0];
   } catch (err) {
     throw new Error(`Error updating user: ${err.message}`);
+  }
+};
+
+UserModel.deleteUserById = async (userId) => {
+  try {
+    const [result] = await db.promise().query('DELETE FROM users WHERE user_id = ?', [userId]);
+    if (result.affectedRows === 0) {
+      return null;
+    }
+    return result;
+  } catch (err) {
+    throw new Error(`Error deleting user: ${err.message}`);
   }
 };
 

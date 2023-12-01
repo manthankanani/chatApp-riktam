@@ -4,6 +4,7 @@ const groupController = require('../controllers/group');
 const authMiddleware = require('../middleware/auth');
 
 router.post('/groups', authMiddleware.isAuthenticated, groupController.createGroup);
+router.get('/groups', authMiddleware.isAuthenticated, groupController.getGroups);
 router.delete('/groups/:groupId', authMiddleware.isGroupOwnerOrAdmin, groupController.deleteGroup);
 router.get('/groups/:groupId/members', authMiddleware.isAuthenticated, groupController.getGroupMembers);
 router.post('/groups/:groupId/members', authMiddleware.isAuthenticated, groupController.addMemberToGroup);

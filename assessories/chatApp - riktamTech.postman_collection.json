@@ -22,7 +22,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"username\": \"user\",\r\n    \"password\": \"passWord\",\r\n    \"email\": \"email\",\r\n    \"is_admin\": 0\r\n}",
+							"raw": "{\r\n    \"username\": \"user\",\r\n    \"password\": \"passWord\",\r\n    \"email\": \"email@gmail.com\",\r\n    \"is_admin\": 0\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -42,7 +42,77 @@
 							]
 						}
 					},
-					"response": []
+					"response": [
+						{
+							"name": "Create User",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "authorization",
+										"value": "{{adminToken}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"username\": \"user\",\r\n    \"password\": \"passWord\",\r\n    \"email\": \"email@gmail.com\",\r\n    \"is_admin\": 0\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{siteURL}}/api/users/admin/users",
+									"host": [
+										"{{siteURL}}"
+									],
+									"path": [
+										"api",
+										"users",
+										"admin",
+										"users"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "118"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"76-Q26yWtBkMz72XYDgaLUIjrs7PPc\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 01 Dec 2023 15:14:17 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"User created successfully\",\n    \"user\": {\n        \"user_id\": 27,\n        \"username\": \"user\",\n        \"email\": \"email@gmail.com\",\n        \"is_admin\": 0\n    }\n}"
+						}
+					]
 				},
 				{
 					"name": "Edit User",
@@ -64,6 +134,33 @@
 								}
 							}
 						},
+						"url": {
+							"raw": "{{siteURL}}/api/users/admin/users/25",
+							"host": [
+								"{{siteURL}}"
+							],
+							"path": [
+								"api",
+								"users",
+								"admin",
+								"users",
+								"25"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete User",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "authorization",
+								"value": "{{adminToken}}",
+								"type": "text"
+							}
+						],
 						"url": {
 							"raw": "{{siteURL}}/api/users/admin/users/25",
 							"host": [
@@ -126,7 +223,71 @@
 							]
 						}
 					},
-					"response": []
+					"response": [
+						{
+							"name": "Admin Login",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"password\": \"passWord\",\r\n    \"username\": \"Admin\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{siteURL}}/api/auth/admin/login",
+									"host": [
+										"{{siteURL}}"
+									],
+									"path": [
+										"api",
+										"auth",
+										"admin",
+										"login"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "214"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"d6-CuLzATGNdaV9AXxZoRIVK9y+0nA\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 01 Dec 2023 18:03:05 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Admin logged in successfully\",\n    \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIwLCJpc19hZG1pbiI6MSwiaWF0IjoxNzAxNDUzNzg1LCJleHAiOjE3MDE0NjA5ODV9.r0nKdi4HsbebqUtTBJwhPMX9P7GS4BV4zWgM7JR55n4\"\n}"
+						}
+					]
 				},
 				{
 					"name": "User Login",
@@ -169,7 +330,71 @@
 							]
 						}
 					},
-					"response": []
+					"response": [
+						{
+							"name": "User Login",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"password\": \"passWord\",\r\n    \"username\": \"user2\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{siteURL}}/api/auth/user/login",
+									"host": [
+										"{{siteURL}}"
+									],
+									"path": [
+										"api",
+										"auth",
+										"user",
+										"login"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "213"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"d5-9ARvFeD0XK+oXFHfJeCHh+0QZIY\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 01 Dec 2023 15:47:08 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"User logged in successfully\",\n    \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjI2LCJpc19hZG1pbiI6MCwiaWF0IjoxNzAxNDQ1NjI4LCJleHAiOjE3MDE0NTI4Mjh9.Eh8KswXt3FZWkXpomjMn7NrqEyJVbN05s8hMkE6qXSQ\"\n}"
+						}
+					]
 				},
 				{
 					"name": "Logout",
@@ -205,7 +430,67 @@
 							]
 						}
 					},
-					"response": []
+					"response": [
+						{
+							"name": "Logout",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "authorization",
+										"value": "{{adminToken}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{siteURL}}/api/auth/logout",
+									"host": [
+										"{{siteURL}}"
+									],
+									"path": [
+										"api",
+										"auth",
+										"logout"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "31"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"1f-vYmtThEV0qgPmOaoi5WLoJuDA80\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 01 Dec 2023 18:54:17 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Logout successful\"\n}"
+						}
+					]
 				}
 			]
 		},
@@ -384,6 +669,91 @@
 					]
 				},
 				{
+					"name": "Retrive My Groups",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "authorization",
+								"value": "{{userToken}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{siteURL}}/api/groups/groups",
+							"host": [
+								"{{siteURL}}"
+							],
+							"path": [
+								"api",
+								"groups",
+								"groups"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "get my groups",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "authorization",
+										"value": "{{userToken}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{siteURL}}/api/groups/groups",
+									"host": [
+										"{{siteURL}}"
+									],
+									"path": [
+										"api",
+										"groups",
+										"groups"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "105"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"69-IoatIXGHbO9BN3ZlH9AOy66gOjI\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 01 Dec 2023 16:13:37 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Group retrived successfully\",\n    \"group\": [\n        {\n            \"group_id\": 5,\n            \"group_name\": \"Group 3\",\n            \"created_by\": 25\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
 					"name": "Get Members",
 					"request": {
 						"method": "GET",
@@ -396,7 +766,7 @@
 							}
 						],
 						"url": {
-							"raw": "{{siteURL}}/api/groups/groups/4/members",
+							"raw": "{{siteURL}}/api/groups/groups/5/members",
 							"host": [
 								"{{siteURL}}"
 							],
@@ -404,12 +774,75 @@
 								"api",
 								"groups",
 								"groups",
-								"4",
+								"5",
 								"members"
 							]
 						}
 					},
-					"response": []
+					"response": [
+						{
+							"name": "Get Members",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "authorization",
+										"value": "{{userToken}}",
+										"type": "text",
+										"description": "admin and user both"
+									}
+								],
+								"url": {
+									"raw": "{{siteURL}}/api/groups/groups/5/members",
+									"host": [
+										"{{siteURL}}"
+									],
+									"path": [
+										"api",
+										"groups",
+										"groups",
+										"5",
+										"members"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "60"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"3c-fW1FAggPShdY4b8AQrL8LyL5OnQ\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 01 Dec 2023 16:14:37 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"members\": [\n        {\n            \"membership_id\": 13,\n            \"group_id\": 5,\n            \"user_id\": 26\n        }\n    ]\n}"
+						}
+					]
 				},
 				{
 					"name": "Add Member",
@@ -433,7 +866,7 @@
 							}
 						},
 						"url": {
-							"raw": "{{siteURL}}/api/groups/groups/4/members",
+							"raw": "{{siteURL}}/api/groups/groups/5/members",
 							"host": [
 								"{{siteURL}}"
 							],
@@ -441,12 +874,84 @@
 								"api",
 								"groups",
 								"groups",
-								"4",
+								"5",
 								"members"
 							]
 						}
 					},
-					"response": []
+					"response": [
+						{
+							"name": "Add member to the group",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "authorization",
+										"value": "{{userToken}}",
+										"type": "text",
+										"description": "admin and user both"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"userId\": 20\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{siteURL}}/api/groups/groups/5/members",
+									"host": [
+										"{{siteURL}}"
+									],
+									"path": [
+										"api",
+										"groups",
+										"groups",
+										"5",
+										"members"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "51"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"33-/kFq5H6ZuwWy1EdH1MAnaU+ju3A\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 01 Dec 2023 16:04:13 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"User is already a member of the group\"\n}"
+						}
+					]
 				},
 				{
 					"name": "Remove Member from Group",
@@ -484,7 +989,80 @@
 							]
 						}
 					},
-					"response": []
+					"response": [
+						{
+							"name": "remove Member from the group",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "authorization",
+										"value": "{{userToken}}",
+										"type": "text",
+										"description": "admin and user both"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{siteURL}}/api/groups/groups/5/members/26",
+									"host": [
+										"{{siteURL}}"
+									],
+									"path": [
+										"api",
+										"groups",
+										"groups",
+										"5",
+										"members",
+										"26"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "56"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"38-f6sy6y4G107imflg+atLGmYWboY\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 01 Dec 2023 16:35:35 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Member deleted from the group successfully\"\n}"
+						}
+					]
 				},
 				{
 					"name": "Delete Group",
@@ -669,7 +1247,7 @@
 							}
 						],
 						"url": {
-							"raw": "{{siteURL}}/api/groups/groups/4/messages?cursor=",
+							"raw": "{{siteURL}}/api/groups/groups/5/messages?cursor=",
 							"host": [
 								"{{siteURL}}"
 							],
@@ -677,7 +1255,7 @@
 								"api",
 								"groups",
 								"groups",
-								"4",
+								"5",
 								"messages"
 							],
 							"query": [
@@ -688,7 +1266,76 @@
 							]
 						}
 					},
-					"response": []
+					"response": [
+						{
+							"name": "Get Messages",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "authorization",
+										"value": "{{userToken}}",
+										"type": "text",
+										"description": "admin and user both"
+									}
+								],
+								"url": {
+									"raw": "{{siteURL}}/api/groups/groups/5/messages?cursor=",
+									"host": [
+										"{{siteURL}}"
+									],
+									"path": [
+										"api",
+										"groups",
+										"groups",
+										"5",
+										"messages"
+									],
+									"query": [
+										{
+											"key": "cursor",
+											"value": ""
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "722"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"2d2-4gVS3OPF+tHAvf78rczqlSj2zWg\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 01 Dec 2023 17:20:51 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"messages\": [\n        {\n            \"message_id\": 12,\n            \"group_id\": 5,\n            \"user_id\": 26,\n            \"message_content\": \"Hello World 2\",\n            \"timestamp\": \"2023-12-01T17:07:08.000Z\",\n            \"like_count\": 1,\n            \"liked\": 1\n        },\n        {\n            \"message_id\": 11,\n            \"group_id\": 5,\n            \"user_id\": 26,\n            \"message_content\": \"Hello World 2\",\n            \"timestamp\": \"2023-12-01T17:06:52.000Z\",\n            \"like_count\": 0,\n            \"liked\": 0\n        },\n        {\n            \"message_id\": 10,\n            \"group_id\": 5,\n            \"user_id\": 26,\n            \"message_content\": \"Hello World 2\",\n            \"timestamp\": \"2023-12-01T17:02:40.000Z\",\n            \"like_count\": 0,\n            \"liked\": 0\n        },\n        {\n            \"message_id\": 9,\n            \"group_id\": 5,\n            \"user_id\": 26,\n            \"message_content\": \"Hello World 2\",\n            \"timestamp\": \"2023-12-01T17:02:10.000Z\",\n            \"like_count\": 0,\n            \"liked\": 0\n        },\n        {\n            \"message_id\": 8,\n            \"group_id\": 5,\n            \"user_id\": 26,\n            \"message_content\": \"Hello World 2\",\n            \"timestamp\": \"2023-12-01T16:57:18.000Z\",\n            \"like_count\": 0,\n            \"liked\": 0\n        }\n    ]\n}"
+						}
+					]
 				},
 				{
 					"name": "Like Message",
@@ -703,7 +1350,7 @@
 							}
 						],
 						"url": {
-							"raw": "{{siteURL}}/api/groups/groups/4/messages/5/like",
+							"raw": "{{siteURL}}/api/groups/groups/5/messages/12/like",
 							"host": [
 								"{{siteURL}}"
 							],
@@ -711,14 +1358,79 @@
 								"api",
 								"groups",
 								"groups",
-								"4",
-								"messages",
 								"5",
+								"messages",
+								"12",
 								"like"
 							]
 						}
 					},
-					"response": []
+					"response": [
+						{
+							"name": "Like Message",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "authorization",
+										"value": "{{userToken}}",
+										"type": "text",
+										"description": "admin and user both"
+									}
+								],
+								"url": {
+									"raw": "{{siteURL}}/api/groups/groups/5/messages/12/like",
+									"host": [
+										"{{siteURL}}"
+									],
+									"path": [
+										"api",
+										"groups",
+										"groups",
+										"5",
+										"messages",
+										"12",
+										"like"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "40"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"28-dCkW8xDidwv7MgT7v5u8LV+3Uvg\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 01 Dec 2023 17:15:16 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Message liked successfully\"\n}"
+						}
+					]
 				},
 				{
 					"name": "Send Message",
@@ -742,7 +1454,7 @@
 							}
 						},
 						"url": {
-							"raw": "{{siteURL}}/api/groups/groups/4/messages",
+							"raw": "{{siteURL}}/api/groups/groups/5/messages",
 							"host": [
 								"{{siteURL}}"
 							],
@@ -750,12 +1462,84 @@
 								"api",
 								"groups",
 								"groups",
-								"4",
+								"5",
 								"messages"
 							]
 						}
 					},
-					"response": []
+					"response": [
+						{
+							"name": "Send Message",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "authorization",
+										"value": "{{userToken}}",
+										"type": "text",
+										"description": "admin and user both"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"messageContent\": \"Hello World 2\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{siteURL}}/api/groups/groups/5/messages",
+									"host": [
+										"{{siteURL}}"
+									],
+									"path": [
+										"api",
+										"groups",
+										"groups",
+										"5",
+										"messages"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "184"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"b8-nwF+J6UxU7UHdxlvXYwJK1oBa8Y\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 01 Dec 2023 17:07:08 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Message sent to the group successfully\",\n    \"sent_message\": {\n        \"message_id\": 12,\n        \"group_id\": 5,\n        \"user_id\": 26,\n        \"message_content\": \"Hello World 2\",\n        \"timestamp\": \"2023-12-01T17:07:08.000Z\"\n    }\n}"
+						}
+					]
 				}
 			]
 		}

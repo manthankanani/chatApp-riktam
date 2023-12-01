@@ -16,6 +16,19 @@ exports.createGroup = async (req, res) => {
   }
 };
 
+exports.getGroups = async (req, res) => {
+  try {
+    const createdBy = req.user.userId; // Assuming you have userId in the token payload
+
+    // Your logic to create a group in the database
+    const groups = await GroupModel.getGroups(createdBy);
+    res.status(201).json({ message: 'Group retrived successfully', group: groups });
+  } catch (err) {
+    console.error('Error getting group:', err);
+    res.status(500).json({ message: 'Failed to get groups' });
+  }
+};
+
 exports.deleteGroup = async (req, res) => {
   try {
     const groupId = req.params.groupId;
@@ -176,7 +189,7 @@ exports.sendMessageToGroup = async (req, res) => {
       return res.status(400).json({ message: 'Failed to send message to the group' });
     }
 
-    res.status(201).json({ message: 'Message sent to the group successfully' });
+    res.status(201).json({ message: 'Message sent to the group successfully', sent_message: sentMessage});
   } catch (err) {
     console.error('Error sending message to group:', err);
     res.status(500).json({ message: 'Failed to send message to the group' });

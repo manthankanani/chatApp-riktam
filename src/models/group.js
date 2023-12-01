@@ -22,6 +22,15 @@ GroupModel.createGroup = async (groupName, createdBy) => {
   }
 };
 
+GroupModel.getGroups = async (userId) => {
+  try {
+    const [groups] = await db.promise().query('SELECT g.* FROM `groups` g LEFT JOIN group_members gm ON gm.group_id = g.group_id where gm.user_id= ?', [userId]);
+    return groups;
+  } catch (err) {
+    throw new Error(`Error finding group: ${err.message}`);
+  }
+};
+
 GroupModel.deleteGroupById = async (groupId) => {
   try {
     const [result] = await db.promise().query('DELETE FROM groups WHERE group_id = ?', [groupId]);
@@ -205,12 +214,15 @@ GroupModel.sendMessageToGroup = async (groupId, userId, messageContent) => {
       'INSERT INTO group_messages (group_id, user_id, message_content, timestamp) VALUES (?, ?, ?, NOW())',
       [groupId, userId, messageContent]
     );
+    const insertedMessageId = result.insertId;
 
-    if (result.affectedRows === 0) {
-      return null;
+    const [message] = await db.promise().query('SELECT * FROM group_messages WHERE message_id = ?', [insertedMessageId]);
+
+    if (message.length === 0) {
+      throw new Error('Message not found after insertion');
     }
 
-    return result;
+    return message[0];
   } catch (err) {
     throw new Error(`Error sending message to group: ${err.message}`);
   }

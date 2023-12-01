@@ -1,6 +1,9 @@
+-- phpMyAdmin SQL Dump
+-- version 5.0.1
+-- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 30, 2023 at 04:04 PM
+-- Generation Time: Dec 01, 2023 at 08:31 PM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.3
 
@@ -30,13 +33,6 @@ CREATE TABLE `groups` (
   `group_name` varchar(100) NOT NULL,
   `created_by` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `groups`
---
-
-INSERT INTO `groups` (`group_id`, `group_name`, `created_by`) VALUES
-(5, 'Group 3', 25);
 
 --
 -- Triggers `groups`
@@ -105,9 +101,8 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`user_id`, `username`, `password`, `email`, `is_admin`) VALUES
-(20, 'Admin', '$2a$10$Hi6Sd9Tdb4hQafPQNVxRq.PQTlQxUt.6S45kB5aBTdthsDDpTKayK', 'email', 1),
-(25, 'user', '$2a$10$EaMErr5cI2.fGCcjRjndo.TJbNexG5igHiofnrJ51LWs.RkJNq5wa', 'email', 0),
-(26, 'user2', '$2a$10$oAooPmkqePV/q3/uiwoErui1RaUGNvUuu6ozXfuCZ.jO2MgT1Vvtq', 'email', 0);
+(20, 'admin', '$2a$10$Hi6Sd9Tdb4hQafPQNVxRq.PQTlQxUt.6S45kB5aBTdthsDDpTKayK', 'admin@example.com', 1),
+(25, 'user', '$2a$10$EaMErr5cI2.fGCcjRjndo.TJbNexG5igHiofnrJ51LWs.RkJNq5wa', 'user@example.com', 0);
 
 --
 -- Indexes for dumped tables
@@ -159,31 +154,31 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `groups`
 --
 ALTER TABLE `groups`
-  MODIFY `group_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `group_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- AUTO_INCREMENT for table `group_members`
 --
 ALTER TABLE `group_members`
-  MODIFY `membership_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `membership_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
 
 --
 -- AUTO_INCREMENT for table `group_messages`
 --
 ALTER TABLE `group_messages`
-  MODIFY `message_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `message_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 
 --
 -- AUTO_INCREMENT for table `message_likes`
 --
 ALTER TABLE `message_likes`
-  MODIFY `like_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `like_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=57;
 
 --
 -- Constraints for dumped tables
